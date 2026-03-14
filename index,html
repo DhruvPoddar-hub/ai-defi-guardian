@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI DeFi Guardian</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── CONNECT SCREEN ─────────────────────────────────── -->
+  <div id="connect-screen">
+    <div class="grid-bg"></div>
+    <div class="glow-bg"></div>
+    <div class="scan-line"></div>
+    <div class="connect-box">
+      <div style="text-align:center">
+        <div class="logo-ring">🛡️</div>
+        <div class="app-title">AI DeFi Guardian</div>
+        <div class="app-sub">SECURITY INTELLIGENCE PLATFORM v3.0</div>
+      </div>
+      <div class="card">
+        <p style="font-size:12px;color:var(--muted);margin-bottom:1.1rem;line-height:1.8">
+          Connect MetaMask or enter any Ethereum address for live security analysis.
+        </p>
+
+        <button class="mm-btn" id="mm-btn" onclick="connectMetaMask()">
+          <span>🦊</span><span id="mm-btn-label">Connect MetaMask</span>
+        </button>
+
+        <div id="mm-msg" class="msg warn" style="display:none"></div>
+
+        <div class="divider"><span>OR ENTER ADDRESS</span></div>
+
+        <div id="scan-err" class="msg err" style="display:none"></div>
+
+        <input
+          class="text-input"
+          id="addr-input"
+          type="text"
+          placeholder="0x... Ethereum wallet address"
+          onkeydown="if(event.key==='Enter') startScan(this.value)"
+        >
+        <button class="green-btn" onclick="startScan(document.getElementById('addr-input').value)">
+          ⬡ SCAN ADDRESS
+        </button>
+
+        <div class="demo-list">
+          <div style="font-size:9px;color:rgba(255,255,255,0.18);letter-spacing:0.15em;margin-bottom:6px">
+            — EXAMPLE WALLETS —
+          </div>
+          <div class="demo-item" onclick="quickScan('0xb3dd18b0c37133523c09c11006c3de90fb79ade3')">
+            0xb3dd18b0c37133523c09c11...ade3
+          </div>
+          <div class="demo-item" onclick="quickScan('0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045')">
+            0xd8dA6BF26964aF9D7eEd9e...6045
+          </div>
+          <div class="demo-item" onclick="quickScan('0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B')">
+            0xAb5801a7D398351b8bE11C...eC9B
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCAN OVERLAY ───────────────────────────────────── -->
+  <div id="scan-overlay">
+    <div class="scan-addr" id="scan-addr-label"></div>
+    <div class="scan-label">◈ LIVE BLOCKCHAIN SCAN...</div>
+    <div class="scan-step">
+      <span style="color:var(--yellow)">▶</span>&nbsp;
+      <span id="scan-step-text">Initializing...</span>
+      <span class="cursor">_</span>
+    </div>
+    <div class="scan-apis">Primary: Ethplorer · Fallback: Ankr + CoinGecko · RPC</div>
+  </div>
+
+  <!-- ── APP SHELL ──────────────────────────────────────── -->
+  <div id="app">
+    <aside id="sidebar">
+      <div class="sidebar-logo">
+        <div class="name">⬡ DeFi Guardian</div>
+        <div class="ver">AI SECURITY SUITE</div>
+      </div>
+      <nav>
+        <div class="nav-label">NAVIGATION</div>
+        <button class="nav-btn active" onclick="showTab('dashboard',this)" data-tab="dashboard">
+          <span class="nav-icon">⬡</span>Dashboard
+        </button>
+        <button class="nav-btn" onclick="showTab('scanner',this)" data-tab="scanner">
+          <span class="nav-icon">◈</span>Contract Scanner
+        </button>
+        <button class="nav-btn" onclick="showTab('portfolio',this)" data-tab="portfolio">
+          <span class="nav-icon">◉</span>Portfolio Risk
+        </button>
+        <button class="nav-btn" onclick="showTab('alerts',this)" data-tab="alerts">
+          <span class="nav-icon">◎</span>Alert Center
+          <span class="nav-badge" id="alert-badge" style="display:none">0</span>
+        </button>
+      </nav>
+      <div class="sidebar-status">
+        <div class="status-row">
+          <div class="status-dot"></div>
+          <span>Live Monitoring</span>
+        </div>
+        <div class="status-info">Ethereum Mainnet<br>Ethplorer · Ankr · CoinGecko</div>
+      </div>
+    </aside>
+
+    <div id="main-content">
+      <header id="header">
+        <div id="crit-banner" style="display:none" class="header-alert">
+          🚨 <span id="crit-count">0</span> Critical Alert<span id="crit-s"></span>
+        </div>
+        <div class="header-right">
+          <span id="update-time" style="font-size:10px;color:rgba(255,255,255,0.18)"></span>
+          <button class="hdr-btn refresh" id="refresh-btn" onclick="refreshWallet()">⟳ Refresh</button>
+          <div class="wallet-badge">
+            <span id="hdr-mm-icon">◈</span>
+            <span id="hdr-addr">—</span>
+            <span id="hdr-mm-badge" class="mm-badge" style="display:none">MM</span>
+            <div class="wallet-dot"></div>
+          </div>
+          <button class="hdr-btn disconnect" onclick="disconnect()">Disconnect</button>
+        </div>
+      </header>
+
+      <div id="panel">
+        <div id="tab-dashboard" class="page active"></div>
+        <div id="tab-scanner"   class="page"></div>
+        <div id="tab-portfolio" class="page"></div>
+        <div id="tab-alerts"    class="page"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
