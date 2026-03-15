@@ -184,7 +184,7 @@ Liquidation triggered when HF < 1.0
 ### Run Locally
 ```bash
 # Clone
-git clone https://github.com/YOUR-USERNAME/ai-defi-guardian.git
+git clone https://github.com/DhruvPoddar-hub/ai-defi-guardian.git
 cd ai-defi-guardian
 
 # Open directly — zero install, zero build
@@ -205,7 +205,7 @@ git init
 git add .
 git commit -m "🛡️ Initial commit — AI DeFi Guardian"
 git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/ai-defi-guardian.git
+git remote add origin https://github.com/DhruvPoddar-hub/ai-defi-guardian.git
 git push -u origin main
 ```
 **GitHub → Settings → Pages → Deploy from main → Save**
@@ -297,9 +297,6 @@ ai-defi-guardian/
 ## 💡 One-Line Pitch
 
 > *AI DeFi Guardian is an AI-powered, real-time security platform that scans wallets, contracts, and DeFi positions — protecting users from rug pulls, exploits, and liquidations before funds are lost.*
-
----
-
 
 ---
 
