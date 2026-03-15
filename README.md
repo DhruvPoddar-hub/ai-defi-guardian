@@ -300,9 +300,6 @@ ai-defi-guardian/
 
 ---
 
-## 👥 Team
-
-> Add your name(s) here
 
 ---
 
