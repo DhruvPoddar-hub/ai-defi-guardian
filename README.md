@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Web3](https://img.shields.io/badge/Web3-MetaMask-orange.svg)](https://metamask.io)
 [![Network](https://img.shields.io/badge/Network-Ethereum-blue.svg)](https://ethereum.org)
-[![Live Demo](https://img.shields.io/badge/Demo-GitHub%20Pages-brightgreen.svg)](https://YOUR-USERNAME.github.io/ai-defi-guardian/)
+[![Live Demo](https://img.shields.io/badge/Demo-GitHub%20Pages-brightgreen.svg)](https://DhruvPoddar-hub.github.io/ai-defi-guardian/)
 
 ---
 
