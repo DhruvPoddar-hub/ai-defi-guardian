@@ -210,7 +210,7 @@ git push -u origin main
 ```
 **GitHub → Settings → Pages → Deploy from main → Save**
 
-Live at: `https://www.defi-gaurdain.xyz/`
+Live at: https://www.defi-gaurdain.xyz
 
 ---
 
